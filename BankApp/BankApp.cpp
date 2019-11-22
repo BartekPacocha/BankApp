@@ -4,9 +4,18 @@
 #include "pch.h"
 #include <iostream>
 
+#include "Menu.h"
+
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	std::unique_ptr<Menu> menu(new Menu);
+	for (;;)
+	{
+		auto option = menu->GetMenuOption();
+		menu->SelectMenuOption(option);
+		if (option == 7)
+			break;
+	}
 }
 
 
