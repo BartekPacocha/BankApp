@@ -7,7 +7,12 @@ class Account :
 {
 public:
 	Account();
+	Account(int);
 	~Account();
-	Owner AccountOwner;
+	// Owner AccountOwner; // TODO: Create owner class
+	void SetAccountNumber(int number) { accountNumber = number; }
+	int GetAccountNumber() { return accountNumber;  }
+private:
+	int accountNumber;
 };
 

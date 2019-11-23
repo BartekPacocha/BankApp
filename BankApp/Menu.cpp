@@ -20,9 +20,11 @@ void Menu::SelectMenuOption(int option)
 	{
 	case 1:
 		cout << "1. New account" << endl;
+		CreateAccount();
 		break;
 	case 2:
 		cout << "2. Deposit"  << endl;
+		// Deposit(); TODO: Deposite 
 		break;
 	case 3:
 		cout << "3. Withdraw" << endl;
@@ -32,6 +34,7 @@ void Menu::SelectMenuOption(int option)
 		break;
 	case 5:
 		cout << "5. Account list" << endl;
+		AccountsList();
 		break;
 	case 6:
 		cout << "6. Close account" << endl;
@@ -43,6 +46,7 @@ void Menu::SelectMenuOption(int option)
 		break;
 	}
 	Clear();
+	DrawMenu();
 }
 
 int Menu::GetMenuOption()
@@ -70,4 +74,39 @@ void Menu::Clear()
 {
 	// TODO: Clear
 	system("cls");
+}
+
+void Menu::CreateAccount()
+{
+	// TODO: CreateAccount
+	int accountNumber;
+	cout << "Create new account: " << endl;
+	cout << "Account number: ";
+	cin >> accountNumber;
+	unique_ptr<Account> account(new Account(accountNumber));
+	AddAccountToList(move(account));
+}
+
+void Menu::AccountsList()
+{
+	cout << "Account amount: " << GetAccountsAmount() << endl;
+	cout << '\n' << "Press 1 to continue...";
+	int key;
+	for (;;)
+	{
+		cin >> key;
+		if (key == 1)
+			break;
+	}
+}
+
+void Menu::AddAccountToList(unique_ptr<Account> account)
+{
+	accountList.push_back(move(account));
+}
+
+int Menu::GetAccountsAmount()
+{
+	auto amount = accountList.size();
+	return amount;
 }

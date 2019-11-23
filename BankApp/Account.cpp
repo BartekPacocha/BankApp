@@ -6,6 +6,10 @@ Account::Account()
 {
 }
 
+Account::Account(int number) : accountNumber(number) 
+{
+}
+
 
 Account::~Account()
 {
