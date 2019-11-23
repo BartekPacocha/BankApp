@@ -9,11 +9,18 @@
 int main()
 {
 	std::unique_ptr<Menu> menu(new Menu);
+
+	// Sample accounts:
+	unique_ptr<Account> a1(new Account(1));
+	menu->AddAccountToList(move(a1));
+	unique_ptr<Account> a2(new Account(2));
+	menu->AddAccountToList(move(a2));
+
 	for (;;)
 	{
 		auto option = menu->GetMenuOption();
 		menu->SelectMenuOption(option);
-		if (option == 7)
+		if (option == 0)
 			break;
 	}
 }
